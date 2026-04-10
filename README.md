@@ -1,17 +1,14 @@
-﻿FinTrans-Analytics
+﻿💳 FinTrans-Analytics – Microsoft Fabric
+Arquitectura analítica orientada a transacciones financieras, desarrollada en Microsoft Fabric con enfoque en Lakehouse + Spark + Power BI.
 
-Financial Transaction Analytics Architecture | Microsoft Fabric
+📌 Resumen Ejecutivo
+Implementación de una solución estructurada para transformación, modelado dimensional y análisis de datos financieros.
 
-Executive Summary
+Generación de métricas ejecutivas y visualización estratégica.
 
-FinTrans-Analytics es una implementación de arquitectura analítica orientada a transacciones financieras, desarrollada en Microsoft Fabric.
+Diseñado bajo restricciones reales de entorno (cuenta educativa), priorizando integridad de datos y lógica de negocio.
 
-El proyecto diseña y construye una solución estructurada para la transformación, modelado dimensional y análisis de datos transaccionales, habilitando métricas ejecutivas y visualización estratégica.
-
-Se trabajó bajo restricciones reales de entorno (capacidad limitada de cuenta educativa), priorizando diseño estructural, integridad de datos y lógica de negocio.
-
-Business Context
-
+🏢 Contexto Empresarial
 Una organización de servicios financieros requiere:
 
 Consolidar transacciones en un modelo estructurado.
@@ -24,58 +21,40 @@ Analizar distribución por canal y tipo de transacción.
 
 Preparar datos confiables para reporting ejecutivo.
 
-El objetivo fue diseñar una arquitectura analítica que soporte estas necesidades.
+🏗️ Arquitectura General
+Lakehouse → almacenamiento de datos.
 
-Architecture Overview
+PySpark → limpieza y transformación.
 
-La solución fue construida en Microsoft Fabric utilizando:
+Modelo dimensional tipo estrella → integridad y escalabilidad.
 
-Lakehouse como capa de almacenamiento.
+Power BI → visualización ejecutiva.
 
-Transformación con PySpark.
+Flujo lógico:
 
-Modelado dimensional tipo estrella.
-
-Power BI como capa de visualización.
-
-Arquitectura lógica:
-
-Raw Data → Cleaning & Transformation → Dimensional Model → Aggregations → Dashboard Layer
-
-Data Engineering Layer
-Ingesta
-
-Carga inicial de dataset transaccional (1,000 registros).
+Código
+Datos brutos → Limpieza y transformación → Modelo dimensional → Agregaciones → Panel de control (Power BI)
+🧹 Ingeniería de Datos
+Ingesta inicial de 1000 registros transaccionales.
 
 Validación de estructura y tipos de datos.
-
-(La ingesta en tiempo real no fue implementada debido a restricciones de capacidad del entorno. La arquitectura está preparada para soportarla.)
-
-Data Cleaning & Transformation
 
 Normalización de montos negativos.
 
 Creación de columnas derivadas:
 
-TransactionAmount_Positive
+ImportePositivo
 
-IsCredit
+IsCredit / IsDebit
 
-IsDebit
+Año / Mes
 
-Conversión de fechas y generación de columnas Year / Month.
+Validación de consistencia en valores.
 
-Validación de consistencia en tipos y valores.
+🏗️ Modelado Dimensional
+Tabla de hechos: FactTransaction
 
-Dimensional Modeling
-
-Se implementó un modelo estrella compuesto por:
-
-Fact Table
-
-FactTransaction
-
-Dimensions
+Dimensiones:
 
 DimDate
 
@@ -83,37 +62,22 @@ DimProduct
 
 DimAccount
 
-Se utilizaron surrogate keys para garantizar integridad y escalabilidad.
+Diseño estrella con claves sustitutas para integridad y escalabilidad.
 
-Este diseño permite:
-
-Análisis temporal eficiente.
-
-Segmentación por producto y cuenta.
-
-Escalabilidad futura para nuevas dimensiones.
-
-Metrics & Business Logic
-
-Se desarrollaron agregaciones estratégicas:
-
-Total Revenue mensual.
+📈 Métricas Estratégicas
+Ingresos totales mensuales.
 
 Distribución por tipo de transacción.
 
 Top 5 productos por monto.
 
-Top 5 cuentas por volumen transaccional.
+Top 5 cuentas por volumen.
 
 Análisis por canal de operación.
 
-Se generó una tabla agregada optimizada para reporting:
-FactTransaction_Summary
+Tabla agregada optimizada: FactTransaction_Summary.
 
-Visualization Layer
-
-Se construyó un dashboard en Power BI que incluye:
-
+📊 Visualización en Power BI
 Evolución mensual de transacciones.
 
 Ranking de productos y cuentas.
@@ -122,31 +86,30 @@ Distribución por canal.
 
 Segmentación por tipo de transacción.
 
-Pantallazos incluidos en la carpeta pantallazos/.
+(Pantallazos incluidos en carpeta pantallazos/).
 
-(Integración con IA y PNF no fue posible por restricciones del entorno, pero el modelo está preparado para extenderse a capacidades avanzadas.)
-
-Technical Constraints & Design Decisions
-
-Entorno con capacidad limitada (cuenta educativa).
+⚙️ Restricciones Técnicas
+Entorno educativo con capacidad limitada.
 
 Sin soporte para streaming en tiempo real.
 
-Sin activación de funcionalidades avanzadas de IA.
+Sin activación de IA avanzada.
 
-Decisión estratégica:
-Priorizar arquitectura sólida, modelo dimensional correcto y métricas de negocio claras sobre componentes no críticos.
+Decisión estratégica: priorizar arquitectura sólida y métricas claras.
 
-Impact & Scalability
-
-La solución permite:
-
-Escalabilidad a ingesta en tiempo real.
+🌍 Impacto y Escalabilidad
+Escalable a ingesta en tiempo real.
 
 Integración futura con modelos predictivos.
 
 Extensión hacia análisis de riesgo o scoring.
 
-Implementación en entornos empresariales sin rediseño estructural.
+Preparado para entornos productivos sin rediseño estructural.
 
-El diseño está preparado para evolucionar hacia un entorno productivo.
+👤 Autor
+Mauricio Vélez Rengifo  
+Ingeniero de Datos | Desarrollador Backend
+
+GitHub: Mvelezrengifo
+
+LinkedIn: Mauricio Vélez
